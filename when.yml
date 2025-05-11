@@ -1,0 +1,16 @@
+---
+- name: upgrade kernel for all os
+  hosts: all
+  become: yes
+  tasks:
+    - name: upgrading kernel in ubuntu
+      when: ansible_os_family == "Debian"
+      apt: 
+        name: apache2
+        state: present
+
+    - name: upgrading kernel in AL
+      when: ansible_os_family == "Amazon"
+      dnf:
+        name: httpd
+        state: present
